@@ -255,55 +255,108 @@
     position: relative;
   }
 
-  /* Mac mini illustrations (top-down view) */
+  /* Mac mini illustrations — top-down squircle view */
   .mini {
     aspect-ratio: 1 / 1;
+    border-radius: 22%;
     background:
-      linear-gradient(180deg, rgba(255,255,255,.14) 0%, transparent 35%),
-      linear-gradient(145deg, #EDEAE2 0%, #D8D3C8 55%, #C8C3B8 100%);
-    border: 1px solid rgba(160,154,142,.65);
-    border-radius: 24px;
+      radial-gradient(ellipse 68% 44% at 36% 26%, rgba(255,255,255,.26) 0%, transparent 52%),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 2px,
+        rgba(0,0,0,.014) 2px,
+        rgba(0,0,0,.014) 3px
+      ),
+      linear-gradient(158deg, #E9E6DE 0%, #D5D0C6 42%, #C9C4BA 68%, #BDB9AE 100%);
+    border: 1px solid rgba(128,122,110,.55);
     position: relative;
     box-shadow:
-      0 2px 0 rgba(255,255,255,.9) inset,
-      0 -1px 0 rgba(0,0,0,.1) inset,
-      0 6px 20px rgba(23,20,15,.10),
-      0 2px 4px rgba(23,20,15,.06);
+      0 1px 0 rgba(255,255,255,.82) inset,
+      0 -1px 0 rgba(0,0,0,.09) inset,
+      0 14px 36px rgba(23,20,15,.22),
+      0 5px 14px rgba(23,20,15,.13),
+      0 2px 4px rgba(23,20,15,.08);
     overflow: hidden;
   }
-  /* Center vent/logo circle */
+  /* Concentric vent rings radiating from center */
   .mini::before {
     content: "";
     position: absolute;
-    top: 46%; left: 50%;
+    top: 48%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 44%; height: 44%;
+    width: 82%; height: 82%;
     border-radius: 50%;
-    background: radial-gradient(circle at 38% 32%,
-      rgba(255,255,255,.22) 0%,
-      rgba(200,195,185,.15) 45%,
-      transparent 100%);
     box-shadow:
-      0 0 0 1.5px rgba(0,0,0,.07),
-      0 0 0 5px rgba(0,0,0,.035),
-      0 0 0 10px rgba(0,0,0,.02),
-      inset 0 1px 2px rgba(255,255,255,.3);
+      0 0 0 1.5px rgba(25,21,15,.16),
+      0 0 0 6px   rgba(25,21,15,.09),
+      0 0 0 12px  rgba(25,21,15,.055),
+      0 0 0 19px  rgba(25,21,15,.032),
+      0 0 0 27px  rgba(25,21,15,.018),
+      0 0 0 36px  rgba(25,21,15,.009);
     pointer-events: none;
+    z-index: 0;
   }
+  /* Apple logo disk */
+  .mini .apple {
+    position: absolute;
+    top: 47%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%; height: 30%;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(38,34,26,.13), rgba(22,18,12,.24));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.12),
+      inset 0 -1px 0 rgba(0,0,0,.1),
+      0 1px 3px rgba(0,0,0,.12);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  .mini .apple::before {
+    content: "\F8FF";
+    font-family: -apple-system, "Apple Color Emoji", BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    color: rgba(25,20,14,.4);
+    display: block;
+  }
+  /* LED at front edge (bottom center) */
   .mini::after {
-    content: ""; position: absolute; left: 14px; bottom: 14px;
-    width: 6px; height: 6px; border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%; bottom: 9px;
+    transform: translateX(-50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
+    box-shadow: 0 0 7px 1px var(--accent);
     animation: pulse 2.4s ease-in-out infinite;
+    z-index: 3;
   }
-  .mini.off::after { background: var(--muted); box-shadow: none; animation: none; }
+  .mini.off::after { background: rgba(138,130,120,.45); box-shadow: none; animation: none; }
+  /* NODE label — top left */
   .mini .label {
-    position: absolute; top: 14px; left: 14px;
+    position: absolute; top: 11px; left: 12px;
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-    color: var(--muted);
+    font-size: 9px;
+    color: rgba(80,72,62,.65);
     letter-spacing: 0.05em;
+    z-index: 2;
+  }
+  /* Port slots at back edge (top of illustration) */
+  .mini .ports {
+    position: absolute;
+    top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 7px; height: 4px;
+    background: rgba(20,16,10,.22);
+    border-radius: 1px;
+    box-shadow:
+      13px  0 0 0 rgba(20,16,10,.22),
+      26px  0 0 0 rgba(20,16,10,.22),
+      -13px 0 0 0 rgba(20,16,10,.22),
+      -26px 0 0 0 rgba(20,16,10,.22);
+    z-index: 2;
   }
 
   /* SECTIONS */
@@ -518,12 +571,12 @@
 
     <div class="hero-vis reveal d3" aria-hidden="true">
       <div class="rack">
-        <div class="mini"><span class="label">NODE 01 · M4</span></div>
-        <div class="mini"><span class="label">NODE 02 · M4</span></div>
-        <div class="mini"><span class="label">NODE 03 · M2</span></div>
-        <div class="mini off"><span class="label">NODE 04 · STANDBY</span></div>
-        <div class="mini"><span class="label">NODE 05 · M4</span></div>
-        <div class="mini"><span class="label">NODE 06 · M2 PRO</span></div>
+        <div class="mini"><span class="apple" aria-hidden="true"></span><span class="label">NODE 01 · M4</span><span class="ports" aria-hidden="true"></span></div>
+        <div class="mini"><span class="apple" aria-hidden="true"></span><span class="label">NODE 02 · M4</span><span class="ports" aria-hidden="true"></span></div>
+        <div class="mini"><span class="apple" aria-hidden="true"></span><span class="label">NODE 03 · M2</span><span class="ports" aria-hidden="true"></span></div>
+        <div class="mini off"><span class="apple" aria-hidden="true"></span><span class="label">NODE 04 · STANDBY</span><span class="ports" aria-hidden="true"></span></div>
+        <div class="mini"><span class="apple" aria-hidden="true"></span><span class="label">NODE 05 · M4</span><span class="ports" aria-hidden="true"></span></div>
+        <div class="mini"><span class="apple" aria-hidden="true"></span><span class="label">NODE 06 · M2 PRO</span><span class="ports" aria-hidden="true"></span></div>
       </div>
     </div>
   </div>
