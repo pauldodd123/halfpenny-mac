@@ -637,7 +637,7 @@
           <li>Nightly snapshots</li>
           <li>Priority support</li>
           <li>2 TB bandwidth</li>
-          <li>Static IP</li>
+          <li>Root access</li>
         </ul>
         <a href="#waitlist" class="btn">Join waitlist</a>
       </div>
@@ -698,7 +698,13 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+  const _supabase = supabase.createClient(
+    'https://klnerdcxmhrqqrwrleez.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsbmVyZGN4bWhycXFyd3JsZWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY1MzE1MTEsImV4cCI6MjA2MjEwNzUxMX0.q0LnY6FdQZm3SmmbFW0Lsz7oZabv4AINEwlWhuTML5A'
+  );
+
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   // Mobile nav toggle
@@ -717,7 +723,7 @@
     });
   }
 
-  // Waitlist form — POST to Formspree (swap YOUR_FORM_ID for your actual Formspree endpoint ID)
+  // Waitlist form — saves to Supabase `waitlist` table
   const waitlistForm = document.getElementById('waitlist-form');
   if (waitlistForm) {
     waitlistForm.addEventListener('submit', async (e) => {
@@ -732,24 +738,22 @@
       msg.textContent = '';
       msg.style.color = 'var(--accent)';
 
-      try {
-        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: emailInput.value })
-        });
-        if (res.ok) {
-          msg.textContent = 'Thanks \u2014 you\u2019re on the list. We\u2019ll be in touch.';
-          emailInput.value = '';
-        } else {
-          const data = await res.json().catch(() => ({}));
-          msg.textContent = (data.errors && data.errors[0]?.message) || 'Something went wrong \u2014 please try again.';
-          msg.style.color = '#E05D3B';
-          btn.disabled = false;
-          btn.innerHTML = origHTML;
-        }
-      } catch {
-        msg.textContent = 'Network error \u2014 please try again.';
+      const { error } = await _supabase
+        .from('waitlist')
+        .insert({ email: emailInput.value });
+
+      if (!error) {
+        msg.textContent = 'Thanks \u2014 you\u2019re on the list. We\u2019ll be in touch.';
+        emailInput.value = '';
+        btn.disabled = false;
+        btn.innerHTML = origHTML;
+      } else if (error.code === '23505') {
+        msg.textContent = 'You\u2019re already on the list \u2014 we\u2019ll be in touch soon.';
+        emailInput.value = '';
+        btn.disabled = false;
+        btn.innerHTML = origHTML;
+      } else {
+        msg.textContent = 'Something went wrong \u2014 please try again.';
         msg.style.color = '#E05D3B';
         btn.disabled = false;
         btn.innerHTML = origHTML;
