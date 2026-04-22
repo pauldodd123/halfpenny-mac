@@ -667,7 +667,7 @@
     </div>
     <div class="steps">
       <div class="step"><div class="n">i</div><h3>You sign up</h3><p>Pick a tier. We invoice you. Standard UK business stuff.</p></div>
-      <div class="step"><div class="n">ii</div><h3>We provision</h3><p>Fresh macOS, Chrome, Tailscale, your SSH key. Baseline image, hardened.</p></div>
+      <div class="step"><div class="n">ii</div><h3>We provision</h3><p>Fresh macOS, Chrome, Tailscale, your SSH key. Baseline image, hardened. Usually under 24&nbsp;hours.</p></div>
       <div class="step"><div class="n">iii</div><h3>You connect</h3><p>Join your tailnet. ssh in. Or open Screen Sharing and you're on the desktop.</p></div>
       <div class="step"><div class="n">iv</div><h3>You get to work</h3><p>Install your tools, log into your accounts, run your builds. We stay out of the way.</p></div>
     </div>
@@ -688,6 +688,7 @@
       <button type="submit" class="btn">Request access <span class="arr">→</span></button>
       <div class="msg" role="status" aria-live="polite" style="flex-basis:100%; color: var(--accent); font-size:14px; margin-top:8px;"></div>
     </form>
+    <p style="margin-top:16px; font-size:13px; color:#7A7267;">Usually provisioned within 24 hours of confirming your slot.</p>
   </div>
 </section>
 
@@ -743,7 +744,7 @@
         .insert({ email: emailInput.value });
 
       if (!error) {
-        msg.textContent = 'Thanks \u2014 you\u2019re on the list. We\u2019ll be in touch.';
+        msg.textContent = 'Thanks \u2014 you\u2019re on the list. We usually provision within 24\u00a0hours of confirming your slot.';
         emailInput.value = '';
         btn.disabled = false;
         btn.innerHTML = origHTML;
