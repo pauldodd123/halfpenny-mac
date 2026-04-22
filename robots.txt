@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pauldodd123.github.io/halfpenny-mac/sitemap.xml

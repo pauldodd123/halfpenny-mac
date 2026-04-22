@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="g1" cx="85%" cy="15%" r="55%">
+      <stop offset="0%" stop-color="#B84A1E" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#17140F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="10%" cy="90%" r="45%">
+      <stop offset="0%" stop-color="#B84A1E" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#17140F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#17140F"/>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+
+  <!-- Subtle grid -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="#3A3630" stroke-width="1" opacity="0.4"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#3A3630" stroke-width="1" opacity="0.4"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#3A3630" stroke-width="1" opacity="0.4"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#3A3630" stroke-width="1" opacity="0.4"/>
+
+  <!-- Logo mark -->
+  <rect x="80" y="72" width="52" height="52" rx="12" fill="#F5F1EA"/>
+  <circle cx="106" cy="98" r="15" fill="#B84A1E"/>
+  <circle cx="106" cy="98" r="6" fill="#6B2A10"/>
+
+  <!-- Brand name -->
+  <text x="80" y="270" font-family="Georgia, 'Times New Roman', serif" font-size="88" font-weight="300" fill="#F5F1EA" letter-spacing="-3">Halfpenny Mac</text>
+
+  <!-- Tagline -->
+  <text x="82" y="345" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#B84A1E" font-style="italic" letter-spacing="-0.5">Managed Mac minis, rented by the month.</text>
+
+  <!-- Descriptor line -->
+  <text x="82" y="420" font-family="'Courier New', Courier, monospace" font-size="17" fill="#8A8278" letter-spacing="2.5">iOS BUILDS · AI WORKLOADS · BROWSER AUTOMATIONS · UK-BASED</text>
+
+  <!-- Price callouts -->
+  <rect x="82" y="468" width="180" height="60" rx="8" fill="#3A3630" opacity="0.7"/>
+  <text x="172" y="493" font-family="Georgia, serif" font-size="13" fill="#8A8278" text-anchor="middle" letter-spacing="1">STARTER</text>
+  <text x="172" y="518" font-family="Georgia, serif" font-size="22" fill="#F5F1EA" text-anchor="middle" font-weight="300">£49/mo</text>
+
+  <rect x="278" y="468" width="180" height="60" rx="8" fill="#B84A1E" opacity="0.9"/>
+  <text x="368" y="493" font-family="Georgia, serif" font-size="13" fill="#FBFAF6" text-anchor="middle" letter-spacing="1">PRO</text>
+  <text x="368" y="518" font-family="Georgia, serif" font-size="22" fill="#FBFAF6" text-anchor="middle" font-weight="300">£89/mo</text>
+
+  <rect x="474" y="468" width="180" height="60" rx="8" fill="#3A3630" opacity="0.7"/>
+  <text x="564" y="493" font-family="Georgia, serif" font-size="13" fill="#8A8278" text-anchor="middle" letter-spacing="1">MAX</text>
+  <text x="564" y="518" font-family="Georgia, serif" font-size="22" fill="#F5F1EA" text-anchor="middle" font-weight="300">£149/mo</text>
+
+  <!-- URL -->
+  <text x="1120" y="598" font-family="'Courier New', Courier, monospace" font-size="14" fill="#8A8278" text-anchor="end" letter-spacing="0.5">halfpenny.mac</text>
+</svg>
