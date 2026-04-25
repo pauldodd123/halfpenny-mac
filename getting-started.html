@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Getting Started — Halfpenny Mac</title>
+<meta name="description" content="How to get set up with your Halfpenny Mac. Tailscale, SSH, remote desktop, installing software, and getting help." />
+<meta property="og:title" content="Getting Started — Halfpenny Mac" />
+<meta property="og:description" content="Step-by-step guide to connecting to your managed Mac mini." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pauldodd123.github.io/halfpenny-mac/getting-started.html" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317140F'/><circle cx='16' cy='16' r='9' fill='%23B84A1E'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F5F1EA;
+    --paper-2: #EDE7DB;
+    --ink: #17140F;
+    --ink-2: #3A3630;
+    --muted: #8A8278;
+    --line: #D9D3C7;
+    --accent: #B84A1E;
+    --accent-ink: #FBFAF6;
+    --radius: 10px;
+    --maxw: 1180px;
+    --pad: clamp(20px, 4vw, 48px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Instrument Sans", -apple-system, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "ss02";
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; }
+  h1, h2, h3, h4 { font-family: "Fraunces", Georgia, serif; font-weight: 420; letter-spacing: -0.01em; margin: 0; font-variation-settings: "SOFT" 30; }
+  h1 { font-size: clamp(44px, 7.8vw, 104px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 380; }
+  p { margin: 0 0 1em; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); position: relative; z-index: 2; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(245, 241, 234, 0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo .mark {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--ink);
+    position: relative;
+    box-shadow: inset 0 0 0 2px var(--paper);
+  }
+  .logo .mark::after {
+    content: ""; position: absolute; inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--accent), #6B2a10);
+  }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 14px; color: var(--ink-2); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+  .nav-links a.btn { color: var(--paper); }
+  .nav-links a.btn:hover { color: var(--paper); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px; height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .22s ease, opacity .18s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px; left: 0; right: 0;
+      background: rgba(245, 241, 234, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      padding: 8px var(--pad) 20px;
+      gap: 0;
+      box-shadow: 0 8px 24px rgba(23,20,15,.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+    }
+    .nav-links a.btn {
+      margin-top: 16px;
+      border-bottom: none;
+      padding: 12px 22px;
+      justify-content: center;
+    }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); background: var(--accent); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translateX(3px); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* Page hero */
+  .page-hero {
+    padding: clamp(50px, 8vh, 90px) 0 clamp(32px, 5vh, 56px);
+    border-bottom: 1px solid var(--line);
+  }
+  .page-hero h1 {
+    font-size: clamp(38px, 5.5vw, 72px);
+    line-height: 1.06;
+    margin-top: 8px;
+  }
+  .page-hero .lede {
+    max-width: 560px;
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-top: 20px;
+  }
+
+  /* Getting started */
+  .page-body { padding: clamp(50px, 7vw, 90px) 0; }
+
+  .gs-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .gs-layout { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .gs-nav {
+    position: sticky;
+    top: 80px;
+  }
+  .gs-nav-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 16px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+  .gs-nav a {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.4;
+  }
+  .gs-nav a:hover { color: var(--accent); }
+  .gs-nav .n {
+    font-family: "Fraunces", serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--accent);
+    font-variation-settings: "SOFT" 80;
+    flex-shrink: 0;
+  }
+  @media (max-width: 860px) { .gs-nav { display: none; } }
+
+  .gs-steps {}
+  .gs-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 28px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .gs-step:last-child { border-bottom: 1px solid var(--line); }
+  .gs-num {
+    font-family: "Fraunces", serif;
+    font-size: 48px;
+    font-weight: 360;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+    font-variation-settings: "SOFT" 80;
+    padding-top: 4px;
+  }
+  .gs-body {}
+  .gs-body h2 {
+    font-size: clamp(20px, 2.4vw, 26px);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .gs-body p { color: var(--ink-2); font-size: 16px; line-height: 1.65; margin-bottom: 1em; }
+  .gs-body p:last-child { margin-bottom: 0; }
+  .gs-body ul, .gs-body ol { color: var(--ink-2); font-size: 16px; padding-left: 1.4em; margin: 0.6em 0 1em; }
+  .gs-body li { margin: 0.35em 0; line-height: 1.6; }
+  .gs-body strong { color: var(--ink); font-weight: 600; }
+  .gs-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .code-block {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: var(--ink);
+    color: #E8E0D0;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin: 0.8em 0;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.6;
+  }
+  .code-block .cm { color: #7A7267; }
+  .code-block .kw { color: var(--accent); }
+
+  .callout {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 1em 0;
+  }
+  .callout p { color: var(--ink-2); font-size: 14px; margin-bottom: 0; }
+  .callout strong { color: var(--ink); }
+
+  @media (max-width: 500px) {
+    .gs-step { grid-template-columns: 1fr; gap: 8px; }
+    .gs-num { font-size: 36px; }
+  }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center; }
+  footer .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer .foot-links a { color: var(--muted); text-decoration: none; }
+  footer .foot-links a:hover { color: var(--accent); }
+  footer .foot-disclaimer { margin-top: 12px; }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Main navigation">
+  <div class="wrap row">
+    <a href="index.html" class="logo"><span class="mark" aria-hidden="true"></span> Halfpenny Mac</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="getting-started.html" class="active">Getting Started</a>
+      <a href="terms.html">Terms</a>
+      <a href="index.html#waitlist" class="btn" style="padding: 10px 18px; font-size: 14px;">Join waitlist <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero" role="banner">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Setup guide</div>
+    <h1>Getting Started</h1>
+    <p class="lede">From waitlist to working Mac mini. Usually under 24 hours start to finish.</p>
+  </div>
+</header>
+
+<main>
+<div class="page-body">
+  <div class="wrap">
+    <div class="gs-layout">
+
+      <aside class="gs-nav" aria-label="Steps">
+        <span class="gs-nav-label">Steps</span>
+        <a href="#step-waitlist"><span class="n">i</span> Join the waitlist</a>
+        <a href="#step-provisioning"><span class="n">ii</span> Provisioning</a>
+        <a href="#step-tailscale"><span class="n">iii</span> Set up Tailscale</a>
+        <a href="#step-ssh"><span class="n">iv</span> SSH access</a>
+        <a href="#step-desktop"><span class="n">v</span> Remote desktop</a>
+        <a href="#step-software"><span class="n">vi</span> Installing software</a>
+        <a href="#step-backups"><span class="n">vii</span> Backups</a>
+        <a href="#step-help"><span class="n">viii</span> Getting help</a>
+      </aside>
+
+      <div class="gs-steps">
+
+        <div class="gs-step" id="step-waitlist">
+          <div class="gs-num">i</div>
+          <div class="gs-body">
+            <h2>Join the waitlist</h2>
+            <p>Head to the <a href="index.html#waitlist">homepage</a> and enter your email address. Pick the tier that fits — Budget (M1), Starter (M2), Pro (M4), or Max (M4 Pro). If you're not sure, the <a href="faq.html">FAQ</a> has a breakdown of each.</p>
+            <p>We onboard in small batches, so you'll get a reply with your confirmed slot and a price sheet. Once you've confirmed and paid, provisioning starts.</p>
+            <div class="callout">
+              <p><strong>Tip:</strong> If you need Xcode, a specific macOS version, or a particular tool pre-installed, mention it in the reply to your slot confirmation — we'll set it up before handing over.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-provisioning">
+          <div class="gs-num">ii</div>
+          <div class="gs-body">
+            <h2>Provisioning</h2>
+            <p>Once payment is confirmed we provision your machine. This means a fresh macOS install, our baseline hardening profile applied via MDM, Tailscale installed and configured, and your SSH public key added.</p>
+            <p>You'll get an email with:</p>
+            <ul>
+              <li>Your Tailscale invite link</li>
+              <li>Your machine's Tailscale hostname (e.g. <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">node-05.your-tailnet.ts.net</code>)</li>
+              <li>Your username on the machine</li>
+              <li>Instructions for adding your SSH public key if you haven't already</li>
+            </ul>
+            <p>Provisioning typically completes within a few hours; the 24-hour window covers edge cases and time zones.</p>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-tailscale">
+          <div class="gs-num">iii</div>
+          <div class="gs-body">
+            <h2>Set up Tailscale</h2>
+            <p>Tailscale is how you reach your Mac. It creates an encrypted peer-to-peer connection — no public IP, no port forwarding, works from anywhere.</p>
+
+            <p><strong>Install Tailscale on your local machine:</strong></p>
+            <ul>
+              <li>Mac: <a href="https://tailscale.com/download/mac">tailscale.com/download/mac</a> or <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">brew install --cask tailscale</code></li>
+              <li>Linux: <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">curl -fsSL https://tailscale.com/install.sh | sh</code></li>
+              <li>Windows / iOS / Android: available from <a href="https://tailscale.com/download">tailscale.com/download</a></li>
+            </ul>
+
+            <p><strong>Join the tailnet:</strong> Click the invite link from your provisioning email. You'll be prompted to sign in with your Tailscale account (or create one — free tier is fine). Once joined, your Mac mini will appear in your Tailscale device list.</p>
+
+            <div class="callout">
+              <p><strong>Verify it's working:</strong> Once both devices are on the tailnet, you should be able to ping your Mac mini by its Tailscale hostname. Give it a minute for the peer-to-peer handshake to complete on first connection.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-ssh">
+          <div class="gs-num">iv</div>
+          <div class="gs-body">
+            <h2>SSH access</h2>
+            <p>SSH access is key-based only — no passwords. You'll need to provide your SSH public key when you sign up (or shortly after). If you haven't set one up before:</p>
+
+            <div class="code-block"><span class="cm"># Generate a key if you don't have one</span>
+ssh-keygen -t ed25519 -C "your@email.com"
+
+<span class="cm"># Print your public key to copy/paste</span>
+cat ~/.ssh/id_ed25519.pub</div>
+
+            <p>Send us the output of that last command (your <strong>public</strong> key — the one ending in your email). We add it to your account and confirm when it's ready.</p>
+
+            <p><strong>To connect:</strong></p>
+            <div class="code-block">ssh yourusername@your-node.your-tailnet.ts.net</div>
+
+            <p>Your exact hostname and username are in the provisioning email. Once connected you're in a standard macOS shell — zsh by default.</p>
+
+            <div class="callout">
+              <p><strong>Tip:</strong> Add an entry to <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">~/.ssh/config</code> so you can just run <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">ssh halfpenny</code>:</p>
+            </div>
+            <div class="code-block">Host halfpenny
+  HostName your-node.your-tailnet.ts.net
+  User yourusername
+  IdentityFile ~/.ssh/id_ed25519</div>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-desktop">
+          <div class="gs-num">v</div>
+          <div class="gs-body">
+            <h2>Remote desktop</h2>
+            <p>For a full graphical desktop, you have two options — both work over Tailscale:</p>
+
+            <p><strong>macOS Screen Sharing (built-in):</strong> Open Finder, press <kbd style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--paper-2);padding:2px 7px;border-radius:4px;border:1px solid var(--line);">⌘K</kbd>, and enter:</p>
+            <div class="code-block">vnc://your-node.your-tailnet.ts.net</div>
+            <p>Sign in with your account credentials. Screen Sharing works well for occasional use.</p>
+
+            <p><strong>Jump Desktop (recommended for regular use):</strong> Install <a href="https://jumpdesktop.com">Jump Desktop</a> on your local machine. Use <em>Jump Desktop Connect</em> on your Mac mini (we pre-install it on request) for a smoother, lower-latency connection. Jump Desktop handles reconnections gracefully and performs better over variable connections.</p>
+
+            <div class="callout">
+              <p><strong>Note:</strong> Remote desktop connections go over your Tailscale tunnel — they're never exposed to the public internet. No extra firewall rules needed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-software">
+          <div class="gs-num">vi</div>
+          <div class="gs-body">
+            <h2>Installing software</h2>
+            <p>You have a standard user account. Most software installs without needing admin rights:</p>
+            <ul>
+              <li><strong>Homebrew</strong> — works out of the box for CLI tools</li>
+              <li><strong>App Store apps</strong> — install from your own Apple ID</li>
+              <li><strong>Regular .dmg / .pkg installers</strong> — most work at user level</li>
+            </ul>
+
+            <p>For anything that requires an admin password — system extensions, kernel extensions, some developer tools, VPN clients — just email us with what you need. We'll install it and confirm. No extra charge, no faff.</p>
+
+            <p>Pro tier customers have root access and can install admin-level software themselves.</p>
+
+            <div class="callout">
+              <p><strong>Homebrew quick-start:</strong> If it's not already installed, paste this into your SSH session:</p>
+            </div>
+            <div class="code-block">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-backups">
+          <div class="gs-num">vii</div>
+          <div class="gs-body">
+            <h2>Backups and snapshots</h2>
+            <p>We run <strong>nightly snapshots</strong> of your home directory to Backblaze B2, encrypted at rest. Snapshots are kept for 14 rolling days.</p>
+            <p>To request a restore, email us with:</p>
+            <ul>
+              <li>The date you want to restore from (e.g. "yesterday's snapshot")</li>
+              <li>Whether you want a full home directory restore or specific files/folders</li>
+            </ul>
+            <p>We aim to complete restores within 4 hours during UK business hours.</p>
+            <p>A few things snapshots don't cover: system-level files, apps installed outside your home directory, and anything you've explicitly stored outside <code style="font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);padding:1px 6px;border-radius:4px;">~</code>. For critical data, keep your own off-device backups too.</p>
+          </div>
+        </div>
+
+        <div class="gs-step" id="step-help">
+          <div class="gs-num">viii</div>
+          <div class="gs-body">
+            <h2>Getting help</h2>
+            <p>Email is the main support channel — reply to any message from us, or use the address on your invoice. You'll get a reply from Paul directly, not a support bot.</p>
+            <p>Max tier customers have a dedicated Slack channel for quicker back-and-forth.</p>
+
+            <p><strong>Common things we can help with:</strong></p>
+            <ul>
+              <li>Installing admin-level software</li>
+              <li>Snapshot restores</li>
+              <li>Xcode or toolchain setup</li>
+              <li>CI/CD runner configuration</li>
+              <li>Tailscale connectivity issues</li>
+              <li>Upgrading or downgrading your tier</li>
+              <li>Any questions not covered in the <a href="faq.html">FAQ</a></li>
+            </ul>
+
+            <p>If something is down or broken, email with "URGENT" in the subject and we'll prioritise it.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div>© <span id="yr"></span> Halfpenny Mac · Cotswolds, UK</div>
+      <nav class="foot-links" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="getting-started.html">Getting Started</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">Apple, Mac, and Mac mini are trademarks of Apple Inc. Not affiliated.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

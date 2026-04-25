@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — Halfpenny Mac</title>
+<meta name="description" content="Frequently asked questions about Halfpenny Mac managed Mac mini rentals. Hardware, connectivity, backups, pricing, and more." />
+<meta property="og:title" content="FAQ — Halfpenny Mac" />
+<meta property="og:description" content="Common questions about renting a managed Mac mini from Halfpenny Mac." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pauldodd123.github.io/halfpenny-mac/faq.html" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317140F'/><circle cx='16' cy='16' r='9' fill='%23B84A1E'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F5F1EA;
+    --paper-2: #EDE7DB;
+    --ink: #17140F;
+    --ink-2: #3A3630;
+    --muted: #8A8278;
+    --line: #D9D3C7;
+    --accent: #B84A1E;
+    --accent-ink: #FBFAF6;
+    --radius: 10px;
+    --maxw: 1180px;
+    --pad: clamp(20px, 4vw, 48px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Instrument Sans", -apple-system, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "ss02";
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; }
+  h1, h2, h3, h4 { font-family: "Fraunces", Georgia, serif; font-weight: 420; letter-spacing: -0.01em; margin: 0; font-variation-settings: "SOFT" 30; }
+  h1 { font-size: clamp(44px, 7.8vw, 104px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 380; }
+  p { margin: 0 0 1em; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); position: relative; z-index: 2; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(245, 241, 234, 0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo .mark {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--ink);
+    position: relative;
+    box-shadow: inset 0 0 0 2px var(--paper);
+  }
+  .logo .mark::after {
+    content: ""; position: absolute; inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--accent), #6B2a10);
+  }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 14px; color: var(--ink-2); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+  .nav-links a.btn { color: var(--paper); }
+  .nav-links a.btn:hover { color: var(--paper); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px; height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .22s ease, opacity .18s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px; left: 0; right: 0;
+      background: rgba(245, 241, 234, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      padding: 8px var(--pad) 20px;
+      gap: 0;
+      box-shadow: 0 8px 24px rgba(23,20,15,.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+    }
+    .nav-links a.btn {
+      margin-top: 16px;
+      border-bottom: none;
+      padding: 12px 22px;
+      justify-content: center;
+    }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); background: var(--accent); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translateX(3px); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  /* Page hero */
+  .page-hero {
+    padding: clamp(50px, 8vh, 90px) 0 clamp(32px, 5vh, 56px);
+    border-bottom: 1px solid var(--line);
+  }
+  .page-hero h1 {
+    font-size: clamp(38px, 5.5vw, 72px);
+    line-height: 1.06;
+    margin-top: 8px;
+  }
+  .page-hero .lede {
+    max-width: 560px;
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-top: 20px;
+  }
+
+  /* FAQ */
+  .page-body { padding: clamp(50px, 7vw, 90px) 0; }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 800px) {
+    .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .faq-nav {
+    position: sticky;
+    top: 80px;
+  }
+  .faq-nav-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 16px;
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+  .faq-nav a {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.4;
+  }
+  .faq-nav a:hover { color: var(--accent); }
+  @media (max-width: 800px) { .faq-nav { display: none; } }
+
+  .faq-list {}
+  .faq-item { padding: 32px 0; border-top: 1px solid var(--line); }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+
+  .faq-q {
+    font-family: "Fraunces", serif;
+    font-size: clamp(18px, 2.1vw, 23px);
+    font-weight: 420;
+    color: var(--ink);
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
+    font-variation-settings: "SOFT" 20;
+    line-height: 1.2;
+  }
+  .faq-a { color: var(--ink-2); font-size: 16px; line-height: 1.65; max-width: 640px; }
+  .faq-a p { margin: 0 0 0.8em; }
+  .faq-a p:last-child { margin-bottom: 0; }
+  .faq-a ul { padding-left: 1.4em; margin: 0.5em 0; }
+  .faq-a li { margin: 0.35em 0; }
+  .faq-a strong { color: var(--ink); font-weight: 600; }
+  .faq-a a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .chip {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center; }
+  footer .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer .foot-links a { color: var(--muted); text-decoration: none; }
+  footer .foot-links a:hover { color: var(--accent); }
+  footer .foot-disclaimer { margin-top: 12px; }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Main navigation">
+  <div class="wrap row">
+    <a href="index.html" class="logo"><span class="mark" aria-hidden="true"></span> Halfpenny Mac</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="terms.html">Terms</a>
+      <a href="index.html#waitlist" class="btn" style="padding: 10px 18px; font-size: 14px;">Join waitlist <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero" role="banner">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Common questions</div>
+    <h1>FAQ</h1>
+    <p class="lede">Everything you need to know before signing up. Can't find what you're after? <a href="index.html#waitlist" style="color:var(--accent);text-underline-offset:3px;">Drop us a message.</a></p>
+  </div>
+</header>
+
+<main>
+<div class="page-body">
+  <div class="wrap">
+    <div class="faq-grid">
+
+      <aside class="faq-nav" aria-label="FAQ sections">
+        <span class="faq-nav-label">Jump to</span>
+        <a href="#hardware">Hardware</a>
+        <a href="#connecting">Connecting</a>
+        <a href="#software">Software</a>
+        <a href="#backups">Backups</a>
+        <a href="#workloads">Workloads</a>
+        <a href="#account">Account</a>
+        <a href="#location">Location</a>
+      </aside>
+
+      <div class="faq-list">
+
+        <div class="faq-item" id="hardware">
+          <div class="chip">Hardware</div>
+          <p class="faq-q">What hardware do I actually get?</p>
+          <div class="faq-a">
+            <p>A <strong>dedicated Apple silicon Mac mini</strong> — your own physical machine, not a shared server or a virtualised slice. Nobody else runs workloads on it while you're a customer.</p>
+            <p>Tiers run from an M1 (Budget, 8 GB RAM, 256 GB) up to an M4 Pro (Max, 24 GB RAM, 1 TB). See the <a href="index.html#pricing">pricing page</a> for the full spec breakdown.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Hardware</div>
+          <p class="faq-q">Is this a shared machine or a virtual machine?</p>
+          <div class="faq-a">
+            <p>Neither. It's a dedicated physical Mac mini that runs macOS natively on Apple silicon. There is no hypervisor, no container layer, no other tenants. You get the full machine.</p>
+            <p>This is the whole point — virtualised Mac offerings exist, but they come with caveats. Real hardware means full GPU access, proper Metal performance, and no surprises from shared-resource contention.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="connecting">
+          <div class="chip">Connecting</div>
+          <p class="faq-q">How do I connect to my Mac?</p>
+          <div class="faq-a">
+            <p>Via <strong>Tailscale</strong>. When your machine is provisioned you'll be invited to a private Tailscale network (tailnet). From that point, your Mac mini appears on your tailnet like any other device — no port forwarding, no public IP to worry about.</p>
+            <p>Once on the tailnet you have two options:</p>
+            <ul>
+              <li><strong>SSH</strong> — key-based, fast, for terminal work and CI/CD.</li>
+              <li><strong>Screen Sharing / Remote Desktop</strong> — macOS Screen Sharing (built-in) or Jump Desktop for a fuller experience. Both run over Tailscale.</li>
+            </ul>
+            <p>Full setup walkthrough in the <a href="getting-started.html">Getting Started guide</a>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="software">
+          <div class="chip">Software</div>
+          <p class="faq-q">Can I install whatever software I want?</p>
+          <div class="faq-a">
+            <p>Mostly, yes. You have a <strong>standard user account</strong> with broad permissions — you can install most apps from the App Store and apps distributed as regular macOS installers without needing admin rights.</p>
+            <p>For anything that requires an admin password (system extensions, kernel extensions, some developer tools), just ask and we'll install it for you. There's no extra charge for admin installs.</p>
+            <p>The one constraint: we don't give out the admin password or sudo access directly. This protects the integrity of the managed base image and keeps all machines in the fleet consistent. Pro tier customers get root access — see <a href="index.html#pricing">pricing</a>.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Software</div>
+          <p class="faq-q">What version of macOS will I be running?</p>
+          <div class="faq-a">
+            <p>The <strong>latest stable release of macOS</strong>. We manage OS updates via MDM and apply them on a rolling basis, typically within a few weeks of Apple releasing a new version. We'll give you notice before any major OS updates.</p>
+            <p>If you need to stay on a specific macOS version for compatibility reasons (e.g. a particular Xcode version), let us know at sign-up and we'll arrange it.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="backups">
+          <div class="chip">Backups</div>
+          <p class="faq-q">What about backups? What if I accidentally delete something?</p>
+          <div class="faq-a">
+            <p>We take a <strong>nightly snapshot of your home directory</strong> and store it encrypted on Backblaze B2. Snapshots are kept for 14 rolling days.</p>
+            <p>To restore, open a support ticket with the date you want to roll back to. We aim to complete restores within 4 hours during business hours (UK time).</p>
+            <p>A few caveats worth knowing:</p>
+            <ul>
+              <li>Snapshots cover your home directory, not the full system.</li>
+              <li>We don't back up full disk images — just your data.</li>
+              <li>For anything truly critical, we'd encourage you to maintain your own off-site backups as well.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item" id="workloads">
+          <div class="chip">Workloads</div>
+          <p class="faq-q">Can I use it for iOS and macOS CI/CD?</p>
+          <div class="faq-a">
+            <p>Yes — this is one of the main use cases. <strong>Xcode is pre-installed on request</strong> and we can set up the machine for CI runners (GitHub Actions self-hosted, Bitrise, Fastlane, etc.).</p>
+            <p>Because it's a real Mac running real macOS, there are no compatibility surprises. Simulator runs, code signing, notarisation — it all works the same as your local machine.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Workloads</div>
+          <p class="faq-q">What about AI and LLM workloads?</p>
+          <div class="faq-a">
+            <p><strong>Apple silicon is excellent for local inference.</strong> The unified memory architecture means even the base M1 can run small-to-medium models (7B–13B parameters) at useful speeds without a discrete GPU.</p>
+            <p>Popular tools that work well:</p>
+            <ul>
+              <li><strong>Ollama</strong> — easiest way to get started, great model library</li>
+              <li><strong>llama.cpp</strong> — maximum flexibility and performance</li>
+              <li><strong>MLX</strong> — Apple's own ML framework, optimised for Apple silicon, fast for fine-tuning and inference</li>
+            </ul>
+            <p>The M4 Pro (Max tier, 24 GB unified memory) handles larger models comfortably. If you're planning to run 70B+ models, get in touch to discuss your requirements.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Workloads</div>
+          <p class="faq-q">What's the uptime like?</p>
+          <div class="faq-a">
+            <p>We're targeting <strong>99.5%+ monthly uptime</strong> across the fleet. Machines are on a UPS, on a stable internet connection, and we get paged if something goes offline.</p>
+            <p>That said — this is a best-effort service, not an enterprise SLA with financial penalties. If you need guaranteed four-nines uptime with contractual remedies, we're probably not the right fit. For most development and automation workloads, 99.5% is plenty.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="account">
+          <div class="chip">Account</div>
+          <p class="faq-q">How quickly will I be provisioned after signing up?</p>
+          <div class="faq-a">
+            <p><strong>Usually within 24 hours</strong> of confirming your slot and completing payment. We're rolling out in small batches, so provisioning is done carefully rather than at scale.</p>
+            <p>You'll get a confirmation email once your machine is ready with Tailscale credentials, your SSH public key instructions, and a link to the Getting Started guide.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Account</div>
+          <p class="faq-q">Can I upgrade or downgrade my tier?</p>
+          <div class="faq-a">
+            <p>Yes. Upgrades take effect immediately and are billed pro-rata for the remainder of the current month. Downgrades take effect at the start of your next billing cycle.</p>
+            <p>Note that a downgrade may involve migrating to a different physical machine, which requires a snapshot restore. We'll coordinate this with you to minimise disruption.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Account</div>
+          <p class="faq-q">What happens when I cancel?</p>
+          <div class="faq-a">
+            <p>You retain access until the end of your current billing period. After that, your machine is wiped and reallocated. We'll send a reminder before the wipe so you have time to download anything you need.</p>
+            <p>Backups are deleted within 14 days of account termination.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="chip">Account</div>
+          <p class="faq-q">How do I get support?</p>
+          <div class="faq-a">
+            <p>Email is the primary channel — reply to any of our emails or use the address on your invoice. We're a small operation so you get a real human, not a ticketing bot.</p>
+            <p>Max tier customers get a dedicated Slack channel for faster back-and-forth.</p>
+            <p>Response times: within a few hours for most requests during UK business hours; same day for anything urgent.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" id="location">
+          <div class="chip">Location</div>
+          <p class="faq-q">Where are the Macs physically located?</p>
+          <div class="faq-a">
+            <p>In the <strong>Cotswolds, UK</strong>. Not a data centre in the US, not a cloud provider with a UK availability zone — physical hardware in England.</p>
+            <p>This matters for latency (particularly useful if you're in the UK or Europe), for data residency (your data doesn't leave the UK), and for legal clarity (UK law applies).</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div>© <span id="yr"></span> Halfpenny Mac · Cotswolds, UK</div>
+      <nav class="foot-links" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="getting-started.html">Getting Started</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">Apple, Mac, and Mac mini are trademarks of Apple Inc. Not affiliated.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

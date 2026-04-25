@@ -113,9 +113,10 @@
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, var(--accent), #6B2a10);
   }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
   .nav-links a { text-decoration: none; font-size: 14px; color: var(--ink-2); }
   .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
   .nav-links a.btn { color: var(--paper); }
   .nav-links a.btn:hover { color: var(--paper); }
 
@@ -485,14 +486,16 @@
 
 <nav class="top" aria-label="Main navigation">
   <div class="wrap row">
-    <a href="#" class="logo"><span class="mark" aria-hidden="true"></span> Halfpenny Mac</a>
+    <a href="index.html" class="logo"><span class="mark" aria-hidden="true"></span> Halfpenny Mac</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="#why">Why</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#setup">Setup</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="terms.html">Terms</a>
       <a href="#waitlist" class="btn" style="padding: 10px 18px; font-size: 14px;">Join waitlist <span class="arr">→</span></a>
     </div>
   </div>
@@ -709,9 +712,17 @@
 </section>
 
 <footer>
-  <div class="wrap row">
-    <div>© <span id="yr"></span> Halfpenny Mac · Cotswolds, UK</div>
-    <div>Apple, Mac, and Mac mini are trademarks of Apple Inc. Not affiliated.</div>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;">
+      <div>© <span id="yr"></span> Halfpenny Mac · Cotswolds, UK</div>
+      <nav aria-label="Footer links" style="display:flex;gap:20px;flex-wrap:wrap;">
+        <a href="about.html" style="color:var(--muted);text-decoration:none;">About</a>
+        <a href="faq.html" style="color:var(--muted);text-decoration:none;">FAQ</a>
+        <a href="getting-started.html" style="color:var(--muted);text-decoration:none;">Getting Started</a>
+        <a href="terms.html" style="color:var(--muted);text-decoration:none;">Terms</a>
+      </nav>
+    </div>
+    <div style="margin-top:12px;">Apple, Mac, and Mac mini are trademarks of Apple Inc. Not affiliated.</div>
   </div>
 </footer>
 
