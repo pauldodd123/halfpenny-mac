@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms of Service — Halfpenny Mac</title>
+<meta name="description" content="Terms of Service for Halfpenny Mac managed Mac mini rentals. Payment terms, acceptable use policy, and data handling." />
+<meta property="og:title" content="Terms of Service — Halfpenny Mac" />
+<meta property="og:description" content="Terms of Service for Halfpenny Mac managed Mac mini rentals." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://pauldodd123.github.io/halfpenny-mac/terms.html" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317140F'/><circle cx='16' cy='16' r='9' fill='%23B84A1E'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F5F1EA;
+    --paper-2: #EDE7DB;
+    --ink: #17140F;
+    --ink-2: #3A3630;
+    --muted: #8A8278;
+    --line: #D9D3C7;
+    --accent: #B84A1E;
+    --accent-ink: #FBFAF6;
+    --radius: 10px;
+    --maxw: 1180px;
+    --pad: clamp(20px, 4vw, 48px);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Instrument Sans", -apple-system, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "ss02";
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: inherit; }
+  h1, h2, h3, h4 { font-family: "Fraunces", Georgia, serif; font-weight: 420; letter-spacing: -0.01em; margin: 0; font-variation-settings: "SOFT" 30; }
+  h1 { font-size: clamp(44px, 7.8vw, 104px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 380; }
+  h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 1.04; letter-spacing: -0.022em; }
+  h3 { font-size: clamp(20px, 2.2vw, 26px); line-height: 1.2; letter-spacing: -0.01em; }
+  p { margin: 0 0 1em; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); position: relative; z-index: 2; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  nav.top {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(245, 241, 234, 0.82);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: "Fraunces", serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo .mark {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--ink);
+    position: relative;
+    box-shadow: inset 0 0 0 2px var(--paper);
+  }
+  .logo .mark::after {
+    content: ""; position: absolute; inset: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--accent), #6B2a10);
+  }
+  .nav-links { display: flex; gap: 20px; align-items: center; }
+  .nav-links a { text-decoration: none; font-size: 14px; color: var(--ink-2); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.active { color: var(--accent); font-weight: 500; }
+  .nav-links a.btn { color: var(--paper); }
+  .nav-links a.btn:hover { color: var(--paper); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px; height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .22s ease, opacity .18s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px; left: 0; right: 0;
+      background: rgba(245, 241, 234, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      flex-direction: column;
+      padding: 8px var(--pad) 20px;
+      gap: 0;
+      box-shadow: 0 8px 24px rgba(23,20,15,.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+    }
+    .nav-links a.btn {
+      margin-top: 16px;
+      border-bottom: none;
+      padding: 12px 22px;
+      justify-content: center;
+    }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); background: var(--accent); }
+  .btn .arr { transition: transform .2s ease; }
+  .btn:hover .arr { transform: translateX(3px); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding: clamp(50px, 8vh, 90px) 0 clamp(32px, 5vh, 56px);
+    border-bottom: 1px solid var(--line);
+  }
+  .page-hero h1 {
+    font-size: clamp(38px, 5.5vw, 72px);
+    line-height: 1.06;
+    margin-top: 8px;
+  }
+  .page-hero .sub {
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--muted);
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* Content body */
+  .page-body { padding: clamp(50px, 7vw, 90px) 0; }
+
+  .prose { max-width: 740px; }
+  .prose > h2 {
+    font-size: clamp(20px, 2.6vw, 28px);
+    border-top: 1px solid var(--line);
+    padding-top: 2em;
+    margin: 2em 0 0.8em;
+  }
+  .prose > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  .prose h3 { font-size: clamp(16px, 1.8vw, 19px); margin: 1.6em 0 0.4em; color: var(--ink); }
+  .prose p { color: var(--ink-2); margin-bottom: 1.2em; line-height: 1.65; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose ul, .prose ol { color: var(--ink-2); padding-left: 1.5em; margin: 0 0 1.2em; }
+  .prose li { margin: 0.4em 0; line-height: 1.6; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .callout {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin: 1.5em 0;
+  }
+  .callout p { color: var(--ink-2); font-size: 15px; margin-bottom: 0.6em; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: center; }
+  footer .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer .foot-links a { color: var(--muted); text-decoration: none; }
+  footer .foot-links a:hover { color: var(--accent); }
+  footer .foot-disclaimer { margin-top: 12px; }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Main navigation">
+  <div class="wrap row">
+    <a href="index.html" class="logo"><span class="mark" aria-hidden="true"></span> Halfpenny Mac</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="getting-started.html">Getting Started</a>
+      <a href="terms.html" class="active">Terms</a>
+      <a href="index.html#waitlist" class="btn" style="padding: 10px 18px; font-size: 14px;">Join waitlist <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero" role="banner">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Legal</div>
+    <h1>Terms of Service</h1>
+    <p class="sub">Last updated: April 2026</p>
+  </div>
+</header>
+
+<main>
+<div class="page-body">
+  <div class="wrap">
+    <div class="prose">
+
+      <div class="callout">
+        <p>These terms are plain-English where possible. Key things to know upfront: payment is monthly in advance; overdue accounts are locked after 14 days and wiped after 30 days; crypto mining, spam, and CSAM are automatic termination; and our liability is capped at the fees you've paid in the last 3 months. English law governs.</p>
+      </div>
+
+      <h2>1. The service</h2>
+      <p>Halfpenny Mac ("we", "us", "our") provides managed Apple silicon Mac mini rentals to individuals and businesses ("you", "your"). The service includes dedicated hardware, remote access via Tailscale, a managed base macOS image, and nightly snapshots. We are based in England.</p>
+      <p>By signing up and paying for access you agree to these Terms of Service in full. If you do not agree, do not use the service.</p>
+
+      <h2>2. Payment and billing</h2>
+
+      <h3>Billing cycle</h3>
+      <p>Subscriptions are billed monthly in advance, on the same calendar date each month. Annual billing is available at a discount (equivalent to two months free); annual subscriptions are non-refundable after the first 14 days.</p>
+
+      <h3>Payment method</h3>
+      <p>We invoice via email. Payment is due within 7 days of the invoice date. We accept bank transfer and card payment via the link on your invoice.</p>
+
+      <h3>Failed or late payment</h3>
+      <ul>
+        <li><strong>Day 0:</strong> Invoice issued.</li>
+        <li><strong>Day 7:</strong> Payment due. Reminder sent if unpaid.</li>
+        <li><strong>Day 14:</strong> Account locked. Your Mac mini is accessible to you only with prior arrangement. We email you to confirm the lock.</li>
+        <li><strong>Day 30:</strong> Account terminated. Your Mac mini is wiped and reallocated. All data is permanently deleted. This is irreversible.</li>
+      </ul>
+      <p>If you need extra time, email us before day 14. We will work with you in good faith.</p>
+
+      <h3>Refunds</h3>
+      <p>Monthly subscriptions are non-refundable once a billing period has begun. If you cancel mid-month you retain access until the end of the current billing period; no partial refunds are issued. Annual subscriptions are refundable on a pro-rata basis within the first 14 days only.</p>
+      <p>If we are at fault (e.g. the Mac is offline for more than 72 hours in a single incident due to our error), we will issue a pro-rata credit for the affected days on request.</p>
+
+      <h3>Price changes</h3>
+      <p>We may change subscription prices with 30 days' notice. If you do not cancel before the new price takes effect, you accept the new price.</p>
+
+      <h2>3. Acceptable use policy</h2>
+      <p>Your Mac mini is for your legitimate personal and business use only. The following are strictly prohibited and will result in immediate suspension and termination:</p>
+
+      <ul>
+        <li><strong>Cryptocurrency mining</strong> — including but not limited to Monero (XMR), RandomX, proof-of-work mining of any kind, or participation in any distributed mining pool.</li>
+        <li><strong>Spam and bulk email</strong> — sending unsolicited email, operating bulk mailing infrastructure, or using the machine as a relay. Outbound SMTP ports are blocked by default.</li>
+        <li><strong>Phishing and malware</strong> — hosting phishing pages, distributing malware, operating command-and-control infrastructure, or any activity designed to deceive or compromise third parties.</li>
+        <li><strong>Child sexual abuse material (CSAM)</strong> — any creation, storage, distribution, or facilitation of CSAM. This results in immediate termination, account reporting to relevant authorities, and referral to law enforcement. No exceptions.</li>
+        <li><strong>Reselling access</strong> — sharing, subletting, or reselling your Mac mini access or credentials to any third party without our written consent.</li>
+        <li><strong>High-volume scraping</strong> — automated scraping of third-party websites at a volume that violates their Terms of Service or causes disruption.</li>
+        <li><strong>Illegal activity</strong> — any activity that violates applicable UK law or the laws of the jurisdiction in which you operate.</li>
+      </ul>
+
+      <p>We monitor for abuse including CPU anomalies (sustained high CPU may indicate mining), outbound traffic spikes, and known malicious domain requests. Detection of prohibited activity will result in immediate isolation of your Mac mini pending investigation.</p>
+
+      <p>If we receive a credible abuse report from a third party or upstream provider, we will isolate your Mac mini and contact you with a 24-hour window to respond. Failure to respond, or if the report is substantiated, results in termination.</p>
+
+      <h2>4. Service level</h2>
+      <p>We operate a best-effort service. We target 99.5% monthly uptime across our fleet but this is an aspiration, not a contractual guarantee. We are not an enterprise-grade service and do not offer financially-backed SLAs.</p>
+      <p>We monitor uptime and will notify you proactively if your Mac mini is unreachable. Planned maintenance will be announced with at least 24 hours' notice where possible.</p>
+      <p>For mission-critical workloads requiring guaranteed uptime, a dedicated enterprise service level agreement may be available on request.</p>
+
+      <h2>5. Data handling and security</h2>
+
+      <h3>Encryption at rest</h3>
+      <p>All Mac minis have FileVault full-disk encryption enabled and enforced via MDM. Recovery keys are escrowed to our management system, not to iCloud.</p>
+
+      <h3>Backups and snapshots</h3>
+      <p>We take a nightly snapshot of your home directory (not full-disk images) and store it encrypted on Backblaze B2. Snapshots are retained for 14 rolling days. You can request a restore via a support ticket; we will aim to complete restores within 4 hours during business hours.</p>
+      <p>Snapshots are provided for disaster recovery. They are not a substitute for your own backup strategy for critical data.</p>
+
+      <h3>Access</h3>
+      <p>Your Mac mini is yours during your subscription. We retain a separate admin account for maintenance, updates, and abuse response. We will not access your account or data except:</p>
+      <ul>
+        <li>To perform routine maintenance (patching, hardware checks) with reasonable notice;</li>
+        <li>In response to an abuse report or suspected policy violation;</li>
+        <li>As required by law or court order.</li>
+      </ul>
+
+      <h3>Data on termination</h3>
+      <p>On account termination (whether by you or by us), your Mac mini is wiped using a secure erase process. Backups associated with your account are deleted within 14 days of termination. We do not retain copies of your data beyond this period.</p>
+
+      <h3>Privacy</h3>
+      <p>We collect the personal data necessary to operate the service (name, email, payment information). We are registered with the ICO as a data controller. Our full Privacy Policy is available on request.</p>
+
+      <h2>6. Termination</h2>
+      <p><strong>By you:</strong> You may cancel your subscription at any time by emailing us. Cancellation takes effect at the end of your current billing period.</p>
+      <p><strong>By us for cause:</strong> We may suspend or terminate your account immediately, without notice, for violation of the Acceptable Use Policy, non-payment beyond day 30, or any other material breach of these terms. In such cases no refund is due.</p>
+      <p><strong>By us without cause:</strong> We may terminate the service on 30 days' written notice if we cease to offer the service. In this case we will provide a pro-rata refund for any unused prepaid period.</p>
+
+      <h2>7. Liability</h2>
+      <p>To the fullest extent permitted by law:</p>
+      <ul>
+        <li>Our total aggregate liability to you for any claim arising under or in connection with these terms is capped at the fees you have paid to us in the 3 months immediately preceding the event giving rise to the claim.</li>
+        <li>We exclude all liability for indirect, consequential, or special loss including lost profits, lost data, or loss of business opportunity.</li>
+        <li>We do not exclude liability for death or personal injury caused by our negligence, for fraud, or for any other liability that cannot be excluded under applicable law.</li>
+      </ul>
+      <p>The service is provided "as is". We make no warranty that it will be uninterrupted, error-free, or fit for any particular purpose beyond what is stated in these terms.</p>
+
+      <h2>8. Governing law</h2>
+      <p>These terms are governed by the law of England and Wales. Any dispute arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+      <p>If you are a consumer based in another part of the UK, you retain any rights afforded to you by the law of your jurisdiction that cannot be waived by contract.</p>
+
+      <h2>9. Changes to these terms</h2>
+      <p>We may update these terms from time to time. For material changes we will give 30 days' notice by email. Continued use of the service after notice constitutes acceptance. If you do not accept the new terms, you may cancel before they take effect.</p>
+
+      <h2>10. Contact</h2>
+      <p>Questions about these terms? Email us at the address used in your invoices or sign-up confirmation, or <a href="index.html#waitlist">reach out via the homepage</a>.</p>
+
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div>© <span id="yr"></span> Halfpenny Mac · Cotswolds, UK</div>
+      <nav class="foot-links" aria-label="Footer links">
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="getting-started.html">Getting Started</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+    <p class="foot-disclaimer">Apple, Mac, and Mac mini are trademarks of Apple Inc. Not affiliated.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
